@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+
+version() {
+	echo "git censor v0.1"
+	echo
+}
+
+usage() {
+cat <<EOF
+Usage: git censor [options]
+Options:
+    -h, --help          Show options
+    -v, --version       Installed version
+EOF
+}
+
+main() {
+	if [ "$#" -lt 1 ]; then
+		usage; exit 1
+	fi
+
+	local subcommand="$1"; shift
+
+	case $subcommand in
+		"-h"|"--help")
+			usage; exit 0
+			;;
+		"-v"|"--version")
+			version; exit 0
+			;;
+	esac
+}
+
+main "$@"
